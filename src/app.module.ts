@@ -3,9 +3,9 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
-import { GreeterController } from './greeter/greeter.controller';
 import { GreeterModule } from './greeter/greeter.module';
-import { GreeterService } from './greeter/greeter.service';
+import { NewsModule } from './news/news.module';
+// import { WrappedDatabaseModule } from './wrapped-database/wrapped-database.module';
 
 @Module({
   imports: [
@@ -20,6 +20,8 @@ import { GreeterService } from './greeter/greeter.service';
     }),
     DatabaseModule,
     GreeterModule,
+    NewsModule,
+    // WrappedDatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
