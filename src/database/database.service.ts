@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
 
 @Injectable()
 export class DatabaseService {
@@ -109,7 +109,11 @@ export class DatabaseService {
     try {
       db = this.mongodb.db(dbName);
       const collection = db.collection(collectionName);
-      const result = await collection.find(query).limit(limit).sort(sort).toArray();
+      const result = await collection
+        .find(query)
+        .limit(limit)
+        .sort(sort)
+        .toArray();
       return result;
     } catch (error) {
       if (error) {
@@ -154,7 +158,11 @@ export class DatabaseService {
     try {
       db = this.mongodb.db(dbName);
       const collection = db.collection(collectionName);
-      const result = await collection.updateOne(query, { $set: update }, { upsert: true });
+      const result = await collection.updateOne(
+        query,
+        { $set: update },
+        { upsert: true },
+      );
       return result;
     } catch (error) {
       if (error) {
